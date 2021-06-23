@@ -15,6 +15,16 @@ public class Main {
     public static void main(String[] args) {
         initialiseEnv();
 
+        // If login unsuccessful
+        if (!performLoginWithCorrectCredentials()) {
+            // Perform registration
+            Registration.performRegistration(driver);
+        }
+
+        releaseEnv();
+    }
+
+    private static boolean performLoginWithCorrectCredentials() {
         driver.get("https://courses.ultimateqa.com/users/sign_in");
 
         // Input email address
@@ -29,7 +39,11 @@ public class Main {
         WebElement loginButton = driver.findElement(By.xpath("/html/body/main/div/div/article/form/div[4]/input"));
         loginButton.click();
 
-        releaseEnv();
+        /*
+        boolean isLoginSuccessful = thisIsWhereGetResponseReturnsIfThereWouldNotBeACaptcha();
+        return isLoginSuccessful;
+        */
+        return false;
     }
 
     /**
